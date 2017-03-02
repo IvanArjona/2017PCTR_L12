@@ -66,22 +66,30 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			hilos = new Thread[N_BALL];
-			// Pulsación del botón start
-			for(int i = 0; i < N_BALL; i++){
-				// Inicializa los hilos
-				hilos[i] = new Thread(new HiloBall(balls[i], board));
-				hilos[i].start();
+			if(hilos == null){
+				hilos = new Thread[N_BALL];
+				// Pulsación del botón start
+				for(int i = 0; i < N_BALL; i++){
+					// Inicializa los hilos
+					hilos[i] = new Thread(new HiloBall(balls[i], board));
+					hilos[i].start();
+				}
+				board.setBalls(balls);
 			}
-			board.setBalls(balls);
 		}
 	}
 
 	private class StopListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Code is executed when stop button is pushed
-
+			if(hilos != null){
+				// Paramos los hilos
+				for(Thread hilo : hilos){
+					hilo.interrupt();
+					
+				}
+				hilos = null;
+			}
 		}
 	}
 

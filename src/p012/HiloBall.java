@@ -18,7 +18,7 @@ public class HiloBall implements Runnable {
 				ball.move();
 				ball.reflect();
 				board.repaint();
-				Thread.sleep(100);
+				Thread.sleep(10);
 			}
 		}catch(InterruptedException ex){
 			// Para las bolas
