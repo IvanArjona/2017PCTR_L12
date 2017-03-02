@@ -23,6 +23,7 @@ public class Billiards extends JFrame {
 	// Grupo L12
 	private final int N_BALL = 12+3;
 	private Ball[] balls;
+	private Thread[] hilos;
 
 	public Billiards() {
 
@@ -65,12 +66,14 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			hilos = new Thread[N_BALL];
 			// Pulsación del botón start
-			for(Ball ball : balls){
-				// Empieza a mover
-				ball.move();
+			for(int i = 0; i < N_BALL; i++){
+				// Inicializa los hilos
+				hilos[i] = new Thread(new HiloBall(balls[i], board));
+				hilos[i].start();
 			}
-
+			board.setBalls(balls);
 		}
 	}
 
