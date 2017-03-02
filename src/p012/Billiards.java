@@ -55,6 +55,7 @@ public class Billiards extends JFrame {
 	}
 
 	private void initBalls() {
+		balls = new Ball[N_BALL];
 		// Crea las bolas
 		for(int i = 0; i < N_BALL; i++){
 			balls[i] = new Ball();
