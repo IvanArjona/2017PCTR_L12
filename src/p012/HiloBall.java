@@ -3,11 +3,9 @@ package p012;
 public class HiloBall implements Runnable {
 
 	private final Ball ball;
-	private final Board board;
 	
-	public HiloBall(Ball ball, Board board){
+	public HiloBall(Ball ball){
 		this.ball = ball;
-		this.board = board;
 	}
 	
 	@Override
@@ -17,11 +15,11 @@ public class HiloBall implements Runnable {
 				// Mueve
 				ball.move();
 				ball.reflect();
-				board.repaint();
 				Thread.sleep(10);
 			}
 		}catch(InterruptedException ex){
-			// Para las bolas
+			// Deja de mover
+			return;
 		}
 		
 	}
