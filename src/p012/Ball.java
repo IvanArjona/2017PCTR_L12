@@ -17,6 +17,7 @@ public class Ball {
 		y = Billiards.Height/2-16;
 		v = 5;
 		fi =  Math.random() * Math.PI * 2;
+		assert postcondion(x, y) : "Fuera del tablero";
 	}
 
 	public void move() {
@@ -30,7 +31,7 @@ public class Ball {
 		x += dx;   
 		y += dy;
 		
-		assert postcondion(x, y);
+		assert postcondion(x, y) : "Fuera del tablero";
 	}
 
 	public void reflect() {
@@ -47,7 +48,7 @@ public class Ball {
 			fi = - fi;
 		}
 		
-		assert postcondion(x, y);
+		assert postcondion(x, y) : "Fuera del tablero";
 	}
 
 	public int getX() {
